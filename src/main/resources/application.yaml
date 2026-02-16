@@ -10,4 +10,4 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-irl: http://localhost:8081/realms/menu-system
+          issuer-irl: http://localhost:8081/realms/pedeai

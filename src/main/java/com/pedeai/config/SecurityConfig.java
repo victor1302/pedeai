@@ -31,7 +31,7 @@ public class SecurityConfig {
     @Bean
     public JwtDecoder jwtDecoder(){
         return JwtDecoders.fromIssuerLocation(
-            "http://localhost:8081/realms/menu-system"
+            "http://localhost:8081/realms/pedeai"
         );
     }
 }
