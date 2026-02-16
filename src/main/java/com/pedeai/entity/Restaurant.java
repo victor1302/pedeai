@@ -29,7 +29,7 @@ public class Restaurant {
     @Column(updatable = false, nullable = false)
     private Instant createdAt;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id")
     private User owner;
 }
