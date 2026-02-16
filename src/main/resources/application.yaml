@@ -1,3 +1,8 @@
 spring:
   application:
     name: pedeai
+  datasource:
+    url: ${SPRING_DATABASE_URL}
+    username: ${SPRING_DATABASE_USERNAME}
+    password: ${SPRING_DATABASE_PASSWORD}
+    driver-class0-name: org.postgresql.Driver
