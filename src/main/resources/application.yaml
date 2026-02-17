@@ -1,11 +1,21 @@
 spring:
   application:
     name: pedeai
+  jpa:
+    hibernate:
+      ddl-auto: update
   datasource:
     url: ${SPRING_DATABASE_URL}
     username: ${SPRING_DATABASE_USERNAME}
     password: ${SPRING_DATABASE_PASSWORD}
     driver-class0-name: org.postgresql.Driver
+  keycloak:
+    server-url: ${SPRING_KEYCLOAK_URL}
+    realm: ${SPRING_KEYCLOAK_REALM}
+    admin-realm: master
+    admin:
+      username: ${SPRING_KEYCLOAK_ADMIN}
+      password: ${SPRING_KEYCLOAK_ADMIN_PASSWORD}
   security:
     oauth2:
       resourceserver:
