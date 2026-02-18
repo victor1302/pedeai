@@ -30,10 +30,4 @@ public class SecurityConfig {
         return httpSecurity.build();
     }
 
-    @Bean
-    public JwtDecoder jwtDecoder(){
-        return JwtDecoders.fromIssuerLocation(
-            "http://localhost:8081/realms/pedeai"
-        );
-    }
 }

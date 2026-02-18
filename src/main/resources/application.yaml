@@ -1,23 +1,32 @@
 spring:
   application:
     name: pedeai
+
+  datasource:
+    url: ${SPRING_DATABASE_URL:jdbc:postgresql://localhost:5432/pedeai}
+    username: ${SPRING_DATABASE_USERNAME:postgres}
+    password: ${SPRING_DATABASE_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+
   jpa:
     hibernate:
       ddl-auto: update
-  datasource:
-    url: ${SPRING_DATABASE_URL}
-    username: ${SPRING_DATABASE_USERNAME}
-    password: ${SPRING_DATABASE_PASSWORD}
-    driver-class0-name: org.postgresql.Driver
-  keycloak:
-    server-url: ${SPRING_KEYCLOAK_URL}
-    realm: ${SPRING_KEYCLOAK_REALM}
-    admin-realm: master
-    admin:
-      username: ${SPRING_KEYCLOAK_ADMIN}
-      password: ${SPRING_KEYCLOAK_ADMIN_PASSWORD}
+    show-sql: true
+
   security:
     oauth2:
       resourceserver:
         jwt:
-          issuer-irl: http://localhost:8081/realms/pedeai
+          issuer-uri: ${KEYCLOAK_ISSUER_URI:http://localhost:8081/realms/pedeai}
+
+# =====================
+# KEYCLOAK (ADMIN / APP)
+# =====================
+keycloak:
+  server-url: ${KEYCLOAK_SERVER_URL:http://localhost:8081}
+  realm: ${KEYCLOAK_REALM:pedeai}
+
+  admin:
+    realm: master
+    username: ${KEYCLOAK_ADMIN_USERNAME:admin}
+    password: ${KEYCLOAK_ADMIN_PASSWORD:admin}
