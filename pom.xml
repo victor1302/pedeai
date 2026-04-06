@@ -26,9 +26,11 @@
 		<tag/>
 		<url/>
 	</scm>
-	<properties>
-		<java.version>21</java.version>
-	</properties>
+    <properties>
+        <java.version>21</java.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+    </properties>
 	<dependencies>
 		<!-- Source: https://mvnrepository.com/artifact/me.paulschwarz/spring-dotenv -->
 		<dependency>
@@ -42,6 +44,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+
 
 		<!-- OAuth2 Resource Server -->
 		<dependency>

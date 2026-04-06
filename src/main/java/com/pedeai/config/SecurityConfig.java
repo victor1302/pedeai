@@ -3,31 +3,24 @@ package com.pedeai.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.oauth2.jwt.JwtDecoder;
-import org.springframework.security.oauth2.jwt.JwtDecoders;
-import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableMethodSecurity
 public class SecurityConfig {
+
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, KeycloakRoleConverter keycloakRoleConverter) throws Exception{
+    SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
+        httpSecurity.
+                authorizeHttpRequests(auth -> auth
+                        .requestMatchers(HttpMethod.GET,"/public/**").permitAll()
 
-        JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
-        jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(keycloakRoleConverter);
-
-        httpSecurity
-                .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/public/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                         .anyRequest().authenticated()
                 )
-                .oauth2ResourceServer(oauth -> oauth.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter)));
+                .oauth2ResourceServer(oauth -> oauth.jwt(Customizer.withDefaults()));
         return httpSecurity.build();
     }
-
 }
