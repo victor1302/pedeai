@@ -2,7 +2,6 @@ spring:
   application:
     name: pedeai
 
-
   datasource:
     url: ${SPRING_DATABASE_URL:jdbc:postgresql://localhost:5432/pedeai}
     username: ${SPRING_DATABASE_USERNAME:postgres}
@@ -14,9 +13,16 @@ spring:
       ddl-auto: update
     show-sql: true
 
-
   security:
     oauth2:
       resourceserver:
         jwt:
           issuer-uri: ${KEYCLOAK_ISSUER_URI:http://localhost:8082/realms/pedeai}
+
+keycloak:
+  server-url: ${KEYCLOAK_SERVER_URL:http://localhost:8082}
+  realm: ${KEYCLOAK_REALM}
+  client-id: ${KEYCLOAK_CLIENT_ID}
+  client-secret: ${KEYCLOAK_CLIENT_SECRET}
+  admin-username: ${KEYCLOAK_ADMIN}
+  admin-password: ${KEYCLOAK_ADMIN}

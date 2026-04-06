@@ -2,6 +2,12 @@ package com.pedeai.customers.respository;
 
 import com.pedeai.customers.entity.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface CustomersRepository extends JpaRepository<Customer, Long> {
+import java.util.Optional;
+import java.util.UUID;
+
+@Repository
+public interface CustomersRepository extends JpaRepository<Customer, UUID> {
+
 }

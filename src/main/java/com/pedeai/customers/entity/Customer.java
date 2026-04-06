@@ -6,6 +6,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
+import java.util.UUID;
+
 @Entity
 @Table(name="tb_customers")
 @Getter
@@ -16,9 +18,8 @@ import java.time.Instant;
 public class Customer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
-    private String keycloakUserId;
+    @Column(nullable = false, updatable = false)
+    private UUID id;
     private String address;
     private String city;
     private int loyaltyPoints;
