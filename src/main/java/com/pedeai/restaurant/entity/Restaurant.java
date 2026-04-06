@@ -1,5 +1,6 @@
 package com.pedeai.restaurant.entity;
 
+import com.pedeai.coupons.entity.Coupon;
 import com.pedeai.locations.entity.Location;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,6 +10,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
+import java.util.List;
 
 @Entity
 @Table(name="tb_restaurant")
@@ -35,6 +37,9 @@ public class Restaurant {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "location_id")
     private Location location;
+
+    @OneToMany(mappedBy = "restaurant")
+    private List<Coupon> coupons;
 
 
 }
